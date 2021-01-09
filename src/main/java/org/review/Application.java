@@ -115,20 +115,19 @@ public class Application {
      * @return
      */
 
-    public long getAverageReview(int releaseYear) {
+    public double getAverageReview(int releaseYear) {
 
         Set<Movie> subSet = movies.stream().filter(movie -> (movie.getReleaseYear().equals(releaseYear))).collect(Collectors.toSet());
 
         List<Integer> reviewList = new ArrayList<>();
-
-        subSet.stream().map(movie -> {
+        List<Integer> responseList = new ArrayList<>();
+        subSet.stream().forEach(movie -> {
             reviewList.addAll(movie.getReview().values());
             reviewList.addAll(movie.getCriticReview().values());
-            return reviewList;
         });
 
-        return reviewList.stream()
-                .reduce(0, (a, b) -> a + b) / reviewList.stream().count();
+        return ((double)reviewList.stream()
+                .reduce(0, (a, b) -> a + b)) / reviewList.stream().count();
 
     }
 }

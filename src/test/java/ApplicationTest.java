@@ -110,12 +110,13 @@ public class ApplicationTest {
     /**little doubtful about this scenario
      *
      * */
+    @Test
     public void getAverageReview() {
 
         app.addReview(app.getUser("SRK"), app.getMovie("Tiger"), 5);
         app.addReview(app.getUser("SRK"), app.getMovie("Metro"), 7);
-        long avg = app.getAverageReview(2006);
-        Assertions.assertEquals(avg, 7.33);
+        double avg = app.getAverageReview(2006);
+        Assertions.assertEquals(avg, 7.333333333333333);
 
     }
 }
